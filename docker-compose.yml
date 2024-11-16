@@ -5,6 +5,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: testopenai123
       MYSQL_DATABASE: task_db
+      MYSQL_ROOT_HOST: '%'
     container_name: mysql_container_test
     ports:
       - "3306:3306"
