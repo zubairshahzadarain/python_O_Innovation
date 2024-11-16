@@ -85,4 +85,6 @@ resized  image
 ![Sample Image](Screenshots/resized_image.jpg)
 
 
+i  hosted  this on AWS cloud also.. 
+
 if there is any query you can conect at zubairshahzadarain@gmail.com   ....
