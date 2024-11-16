@@ -35,4 +35,8 @@ This repository contains the solution for the Python Engineer technical challeng
 
    ```bash
    git clone https://github.com/zubairshahzadarain/python_O_Innovation.git
-   cd python_O_Innovation
+   move project directory 
+   sudo docker-compose build
+    sudo docker-compose up
+    once  start  application will start on port 5000 
+   http://localhost:5000/docs#/default/get_images_api_get_images_get

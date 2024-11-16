@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models import image_data
+from app.models import image_data
 import json
 
 def store_images_in_db(db: Session, data):

@@ -13,7 +13,7 @@ services:
 
   fastapi:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     container_name: fastapi_container
     ports:

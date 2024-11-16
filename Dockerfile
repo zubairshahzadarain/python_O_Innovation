@@ -4,8 +4,8 @@ FROM python:3.8.18
 WORKDIR /app
 
 
-COPY requirements.txt .
-COPY img.csv .
+COPY ./requirements.txt /app/
+COPY data/img.csv /app/data/ 
 RUN apt-get update && apt-get install -y libglib2.0-0
 RUN apt-get update && apt-get install -y libgl1-mesa-glx
 # Install the dependencies specified in the requirements.txt
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y libgl1-mesa-glx
 RUN  pip install opencv-python
 RUN pip install fastapi[all] sqlalchemy aiomysql pydantic mysql-connector-python  pandas
 
-COPY . .
+COPY . /app/
 
 # Expose the port FastAPI will run on
 EXPOSE 5000

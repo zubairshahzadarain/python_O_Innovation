@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
-from config import settings
+from app.config import settings
 
 # SQLAlchemy setup
 engine = create_engine(settings.DATABASE_URL, pool_pre_ping=True)

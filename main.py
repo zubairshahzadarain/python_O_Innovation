@@ -5,16 +5,16 @@ from sqlalchemy.orm import Session
 from typing import List  
 from contextlib import asynccontextmanager
 import pandas as pd
-from insert_csv_data_crud import store_images_in_db
-from database_session import get_db
-from schemas import ImageResponse
-from services import resize_and_apply_colormap
+from app.insert_csv_data_crud import store_images_in_db
+from app.database_session import get_db
+from app.schemas import ImageResponse
+from app.services import resize_and_apply_colormap
 from sqlalchemy.sql import text
 from fastapi import Query
 app = FastAPI()
 
-# Load the CSV data and process it
-data = pd.read_csv('img.csv')
+# Load the CSV data and process it  
+data = pd.read_csv('./data/img.csv')
 data = data.dropna()
 data[['image_base64', 'image_shape']] = data.iloc[:, 1:].apply(resize_and_apply_colormap, axis=1, result_type='expand')
 
