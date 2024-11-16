@@ -17,12 +17,15 @@ app = FastAPI()
 data = pd.read_csv('./data/img.csv')
 data = data.dropna()
 data[['image_base64', 'image_shape']] = data.iloc[:, 1:].apply(resize_and_apply_colormap, axis=1, result_type='expand')
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    db = next(get_db())
-    store_images_in_db(db, data)
-    print("Images processed and stored in the database.")
+db = next(get_db())
+store_images_in_db(db, data)
+print("Images processed and stored in the database.")
+# @asynccontextmanager
+# async def lifespan(app: FastAPI):
+#     db = next(get_db())
+#     store_images_in_db(db, data)
+#     print("Images processed and stored in the database.")
+#     yield
 
 
 
