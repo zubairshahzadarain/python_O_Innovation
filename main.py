@@ -20,29 +20,21 @@ data[['image_base64', 'image_shape']] = data.iloc[:, 1:].apply(resize_and_apply_
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup code here
     db = next(get_db())
     store_images_in_db(db, data)
     print("Images processed and stored in the database.")
-    yield
-    # Shutdown code here if needed
+
 
 
 
 @app.get("/api/get_images", response_model=List[ImageResponse])
 async def get_images(depth_min: int, depth_max: int, db: Session = Depends(get_db) ,limit: int = Query(100, ge=1),    offset: int = Query(0, ge=0) ):
     try:
-        # query = text("SELECT depth, image_base64, image_shape FROM image_data WHERE depth BETWEEN :depth_min AND :depth_max")
-        
-        # # Execute the query with parameters
-        # result = db.execute(query, {"depth_min": depth_min, "depth_max": depth_max}).fetchall()
         query = text("SELECT depth, image_base64, image_shape FROM image_data WHERE depth BETWEEN :depth_min AND :depth_max LIMIT :limit OFFSET :offset")
 
         # Execute the query with parameters
         result = db.execute(query, {"depth_min": depth_min, "depth_max": depth_max, "limit": limit,
             "offset": offset }).fetchall()
-
-        # Since fetchall() returns tuples, you need to manually access the data
         images = [{"depth": row[0], "image_base64": row[1], "image_shape": row[2]} for row in result]
         return JSONResponse(content=images)
     
